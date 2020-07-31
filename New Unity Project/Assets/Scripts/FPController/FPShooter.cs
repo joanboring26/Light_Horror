@@ -11,8 +11,16 @@ public class FPShooter : MonoBehaviour
     public AudioClip gunReload;
 
     public Transform shootPoint;
+
     public GameObject bullet;
     public int gunDamage;
+
+    public GameObject HUDCylinder;
+    public GameObject[] HUDBullets;
+    public int bulletsInMag;//Bullets that are left in the magazine also tracks the current bullet slot selected for the revolver HUD
+    public int maxBullets = 6; //ITS A REVOLVER YOU NUMBNUTS OF COURSE IT HAS 6 BULLETS!
+    public int bulletReserve = 0;
+
     public float bulletSpeed;
     public float alertRadius;
     public float muzzleTime;
@@ -23,9 +31,21 @@ public class FPShooter : MonoBehaviour
         
     }
 
+    public void AddAmmo(int ammo)
+    {
+        bulletReserve += ammo;
+    }
+
+
+
     // Update is called once per frame
     void Update()
     {
+        if(Input.GetKeyDown(KeyCode.R))
+        {
+
+        }
+
         if(Input.GetButtonDown("Fire1"))
         {
             gunSrc.PlayOneShot(gunSnd);
