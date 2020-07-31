@@ -13,7 +13,7 @@ public enum GhostStatus
 public class BaseGhostAI : BaseEntity
 {
     public GameObject ghostVisuals;
-    bool 
+    bool beingRevealed = false;
 
     public float visibleRange;
     public float alertRange;
