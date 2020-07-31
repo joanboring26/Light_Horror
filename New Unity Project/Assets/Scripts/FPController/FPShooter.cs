@@ -8,6 +8,7 @@ public class FPShooter : MonoBehaviour
     public GameObject bullet;
     public int gunDamage;
     public float bulletSpeed;
+    public float alertRadius;
     public float muzzleTime;
 
     // Start is called before the first frame update
@@ -33,6 +34,18 @@ public class FPShooter : MonoBehaviour
                 if (health != null)
                 {
                     health.ModHealth(gunDamage, health);
+                }
+            }
+
+            Collider[] ghosts = Physics.OverlapSphere(transform.position, alertRadius, 1 << 8);
+            for(int i = 0; i < ghosts.Length; i++)
+            {
+                BaseGhostAI ghostBase = ghosts[i].GetComponent<BaseGhostAI>();
+                if(ghostBase != null)
+                {
+                    ghostBase.SetGhostVisible();
+                    ghostBase.beingRevealed = true;
+                    ghostBase.AlertGhost(transform, muzzleTime, GhostStatus.ALERTCHASING);
                 }
             }
         }

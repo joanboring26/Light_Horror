@@ -211,7 +211,8 @@ MonoBehaviour:
   bullet: {fileID: 3992975901221404532, guid: d275350c720b01745b679de9c671a03a, type: 3}
   gunDamage: -50
   bulletSpeed: 400
-  muzzleTime: 0
+  alertRadius: 15
+  muzzleTime: 0.2
 --- !u!1 &280433383
 GameObject:
   m_ObjectHideFlags: 0
@@ -289,7 +290,7 @@ AudioSource:
   Priority: 79
   DopplerLevel: 0
   MinDistance: 1
-  MaxDistance: 64.77
+  MaxDistance: 130
   Pan2D: 0
   rolloffMode: 2
   BypassEffects: 0
@@ -613,7 +614,7 @@ GameObject:
   - component: {fileID: 622686652}
   - component: {fileID: 622686656}
   - component: {fileID: 622686655}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: GhostBody
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -929,7 +930,7 @@ GameObject:
   - component: {fileID: 1431681607}
   - component: {fileID: 1431681609}
   - component: {fileID: 1431681608}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}

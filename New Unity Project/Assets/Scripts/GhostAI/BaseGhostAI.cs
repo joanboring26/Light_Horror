@@ -13,7 +13,7 @@ public enum GhostStatus
 public class BaseGhostAI : BaseEntity
 {
     public GameObject ghostVisuals;
-    bool beingRevealed = false;
+    public bool beingRevealed = false;
 
     public float visibleRange;
     public float alertRange;
@@ -62,7 +62,7 @@ public class BaseGhostAI : BaseEntity
                 currentStatus = GhostStatus.CHASING;
             }
         }
-        else
+        else if(!beingRevealed)
         {
             SetGhostInvisible();
         }
@@ -153,6 +153,8 @@ public class BaseGhostAI : BaseEntity
         yield return new WaitForSeconds(gAlertTime);
         currentStatus = GhostStatus.IDLE;
         agent.SetDestination(agent.transform.position);
+        ghostVisuals.SetActive(false);
+        beingRevealed = false;
     }
 
 
