@@ -2,8 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+
 public class FPShooter : MonoBehaviour
 {
+    public AudioSource gunSrc;
+    public AudioClip gunSnd;
+    public AudioClip gunReload;
+
     public Transform shootPoint;
     public GameObject bullet;
     public int gunDamage;
@@ -22,6 +28,7 @@ public class FPShooter : MonoBehaviour
     {
         if(Input.GetButtonDown("Fire1"))
         {
+            gunSrc.PlayOneShot(gunSnd);
             GameObject newBullet = Instantiate(bullet, shootPoint.transform.position, transform.rotation);
             Rigidbody brb = newBullet.GetComponent<Rigidbody>();
             brb.AddRelativeForce(0f, 0f, bulletSpeed, ForceMode.VelocityChange);

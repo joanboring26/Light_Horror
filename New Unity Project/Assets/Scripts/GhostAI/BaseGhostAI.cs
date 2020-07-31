@@ -12,6 +12,11 @@ public enum GhostStatus
 
 public class BaseGhostAI : BaseEntity
 {
+    public AudioSource sndSrc;
+    public AudioClip deathSnd;
+    public AudioClip alertSnd;
+
+
     public GameObject ghostVisuals;
     public bool beingRevealed = false;
 
@@ -40,7 +45,7 @@ public class BaseGhostAI : BaseEntity
     public void Update()
     {
         //This loop mainly controls whether the ghost should be visible or not and if the player is close enough to alert the ghost
-        if (playerTransform != null && (playerTransform.position - transform.position).magnitude < visibleRange)
+        if (playerTransform != null && (playerTransform.position - transform.position).magnitude < visibleRange && agent.enabled)
         {
             SetGhostVisible();
 
@@ -51,6 +56,7 @@ public class BaseGhostAI : BaseEntity
                 if(currentStatus != GhostStatus.CHASING)
                 {
                     AlertGhost(playerTransform, detectedPlayerAlertTime, GhostStatus.CHASING);
+                    sndSrc.PlayOneShot(alertSnd);
                 }
                 else
                 {
@@ -95,7 +101,8 @@ public class BaseGhostAI : BaseEntity
                 //while a ghost is already chasing us doesn't make the ghost switch to the ALERTCHASING status, which has a much shorter time
                 if(currentStatus != GhostStatus.CHASING) 
                 { 
-                    currentStatus = gStatus; 
+                    currentStatus = gStatus;
+                    sndSrc.PlayOneShot(alertSnd);
                     agent.speed = alertSpeed;
                 }
                 else
@@ -143,9 +150,14 @@ public class BaseGhostAI : BaseEntity
     //Function that activates when ghost dies, we'll put in a bunch of sfx here
     public void Die()
     {
+        sndSrc.PlayOneShot(deathSnd);
+
+        agent.enabled = false;
+        agent.gameObject.GetComponent<AudioSource>().Stop();
+        ghostVisuals.SetActive(false);
 
         //This should be executed last
-        Destroy(gameObject);
+        Destroy(agent.gameObject,2.8f);
     }
 
     public IEnumerator AlertGhostMove(float gAlertTime)
