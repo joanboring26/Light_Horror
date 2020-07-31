@@ -1,9 +1,5 @@
 sceneSetups:
-<<<<<<< Updated upstream
-- path: Assets/Scenes/PlayerAliScene.unity
-=======
-- path: Assets/Scenes/PlayerPrefabScene.unity
->>>>>>> Stashed changes
+- path: Assets/Scenes/GhostMovementTests.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0
