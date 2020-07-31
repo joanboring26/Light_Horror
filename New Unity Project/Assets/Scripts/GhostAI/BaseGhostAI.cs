@@ -12,6 +12,7 @@ public enum GhostStatus
 
 public class BaseGhostAI : BaseEntity
 {
+    public AudioSource chaseSrc;
     public AudioSource sndSrc;
     public AudioClip deathSnd;
     public AudioClip alertSnd;
@@ -114,6 +115,7 @@ public class BaseGhostAI : BaseEntity
                 }
                 break;
             case GhostStatus.CHASING:
+                if (currentStatus != GhostStatus.CHASING) { StartCoroutine(GhostChaseSnd()); }
                 agent.speed = chaseSpeed;
                 currentStatus = GhostStatus.CHASING;
                 break;
@@ -154,6 +156,7 @@ public class BaseGhostAI : BaseEntity
 
         agent.enabled = false;
         agent.gameObject.GetComponent<AudioSource>().Stop();
+        chaseSrc.Stop();
         ghostVisuals.SetActive(false);
 
         //This should be executed last
@@ -169,5 +172,28 @@ public class BaseGhostAI : BaseEntity
         beingRevealed = false;
     }
 
+    public IEnumerator GhostChaseSnd()
+    {
+        chaseSrc.volume = 0;
+        chaseSrc.enabled = true;
+        chaseSrc.Play();
+        while(chaseSrc.volume < 0.9f && chaseSrc.volume != 1)
+        {
+            chaseSrc.volume = chaseSrc.volume + 3f * Time.deltaTime;
+            yield return new WaitForEndOfFrame();
+        }
 
+        while(currentStatus == GhostStatus.CHASING)
+        {
+            yield return new WaitForEndOfFrame();
+        }
+
+        while (chaseSrc.volume > 0f)
+        {
+            chaseSrc.volume = chaseSrc.volume - 0.4f * Time.deltaTime;
+            yield return new WaitForEndOfFrame();
+        }
+        chaseSrc.Stop();
+        chaseSrc.enabled = false;
+    }
 }
