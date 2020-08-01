@@ -13,6 +13,7 @@ public class FPShooter : MonoBehaviour
     public AudioClip openCylinder;
     public AudioClip closeCylinder;
     public AudioClip insertBullet;
+    public Animator gunAnim;
 
     public Transform shootPoint;
 
@@ -36,7 +37,7 @@ public class FPShooter : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        gunAnim = GetComponentInChildren<Animator>();
     }
 
     public void AddAmmo(int ammo)
@@ -92,6 +93,7 @@ public class FPShooter : MonoBehaviour
                     HUDBullets[bulletsInMag - 1].SetActive(false);
                     bulletsInMag--;
 
+                    gunAnim.SetTrigger("fire");
                     gunSrc.PlayOneShot(gunSnd);
                     GameObject newBullet = Instantiate(bullet, shootPoint.transform.position, transform.rotation);
                     Rigidbody brb = newBullet.GetComponent<Rigidbody>();
