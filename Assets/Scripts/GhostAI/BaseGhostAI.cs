@@ -7,7 +7,8 @@ public enum GhostStatus
 {
     CHASING,
     ALERTCHASING,
-    IDLE
+    IDLE,
+    STUNNED
 }
 
 public class BaseGhostAI : BaseEntity
@@ -45,38 +46,41 @@ public class BaseGhostAI : BaseEntity
 
     public void Update()
     {
-        //This loop mainly controls whether the ghost should be visible or not and if the player is close enough to alert the ghost
-        if (playerTransform != null && (playerTransform.position - transform.position).magnitude < visibleRange && agent.enabled)
+        if (currentStatus != GhostStatus.STUNNED)
         {
-            SetGhostVisible();
-
-            //If the player is within the alert radius of the ghost, make the ghost chase the player
-            if((playerTransform.position - transform.position).magnitude < alertRange)
+            //This loop mainly controls whether the ghost should be visible or not and if the player is close enough to alert the ghost
+            if (playerTransform != null && (playerTransform.position - transform.position).magnitude < visibleRange && agent.enabled)
             {
-                //If the ghost wasn't chasing the player already then alert the ghost to the player's presence
-                if(currentStatus != GhostStatus.CHASING)
-                {
-                    AlertGhost(playerTransform, detectedPlayerAlertTime, GhostStatus.CHASING);
-                    sndSrc.PlayOneShot(alertSnd);
-                }
-                else
-                {
-                    //If the player was already being chased, we reset the coroutine
-                    if(AlertGhostCoroutine != null) { StopCoroutine(AlertGhostCoroutine); }
-                    AlertGhost(playerTransform, detectedPlayerAlertTime, GhostStatus.CHASING);
-                }
+                SetGhostVisible();
 
-                currentStatus = GhostStatus.CHASING;
+                //If the player is within the alert radius of the ghost, make the ghost chase the player
+                if ((playerTransform.position - transform.position).magnitude < alertRange)
+                {
+                    //If the ghost wasn't chasing the player already then alert the ghost to the player's presence
+                    if (currentStatus != GhostStatus.CHASING)
+                    {
+                        AlertGhost(playerTransform, detectedPlayerAlertTime, GhostStatus.CHASING);
+                        sndSrc.PlayOneShot(alertSnd);
+                    }
+                    else
+                    {
+                        //If the player was already being chased, we reset the coroutine
+                        if (AlertGhostCoroutine != null) { StopCoroutine(AlertGhostCoroutine); }
+                        AlertGhost(playerTransform, detectedPlayerAlertTime, GhostStatus.CHASING);
+                    }
+
+                    currentStatus = GhostStatus.CHASING;
+                }
             }
-        }
-        else if(!beingRevealed)
-        {
-            SetGhostInvisible();
-        }
+            else if (!beingRevealed)
+            {
+                SetGhostInvisible();
+            }
 
-        if(currentStatus == GhostStatus.CHASING)
-        {
-            agent.SetDestination(playerTransform.position);
+            if (currentStatus == GhostStatus.CHASING && agent.enabled)
+            {
+                agent.SetDestination(playerTransform.position);
+            }
         }
     }
 
@@ -195,5 +199,11 @@ public class BaseGhostAI : BaseEntity
         }
         chaseSrc.Stop();
         chaseSrc.enabled = false;
+    }
+
+    public IEnumerator StunGhost()
+    {
+
+        yield return new WaitForSeconds(2f);
     }
 }
