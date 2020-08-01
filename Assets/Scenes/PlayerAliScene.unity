@@ -318,7 +318,10 @@ MonoBehaviour:
   openCylinder: {fileID: 0}
   closeCylinder: {fileID: 0}
   insertBullet: {fileID: 0}
+<<<<<<< Updated upstream
   gunAnim: {fileID: 0}
+=======
+>>>>>>> Stashed changes
   shootPoint: {fileID: 2107438201}
   bullet: {fileID: 3992975901221404532, guid: d275350c720b01745b679de9c671a03a, type: 3}
   gunDamage: 1
