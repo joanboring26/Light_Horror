@@ -5,6 +5,7 @@ using UnityEngine;
 public class FPHealth : MonoBehaviour
 {
     public int maxHealth;
+    public float recoverValue;
     public float currHealth;
     public bool touching;
     public float nextTime = 0;
@@ -58,11 +59,10 @@ public class FPHealth : MonoBehaviour
     }
 
     void RecoverHealth()
-
     {
-        if(currHealth != maxHealth)
+        if(currHealth <= maxHealth)
         {
-            currHealth++;
+            currHealth += recoverValue;
         }
 
     }

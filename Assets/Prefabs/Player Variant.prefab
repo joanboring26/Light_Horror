@@ -107,7 +107,7 @@ Light:
   serializedVersion: 10
   m_Type: 2
   m_Shape: 0
-  m_Color: {r: 0.19090424, g: 0.2582905, b: 0.2830189, a: 1}
+  m_Color: {r: 0.18712175, g: 0.2510293, b: 0.2735849, a: 1}
   m_Intensity: 0.19
   m_Range: 10
   m_SpotAngle: 30
@@ -167,6 +167,22 @@ PrefabInstance:
     - target: {fileID: 171854095, guid: 83528d106eccd4345940ac1ff56ffda7, type: 3}
       propertyPath: bulletsInMag
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 171854095, guid: 83528d106eccd4345940ac1ff56ffda7, type: 3}
+      propertyPath: muzzleTime
+      value: 0.23
+      objectReference: {fileID: 0}
+    - target: {fileID: 894045020, guid: 83528d106eccd4345940ac1ff56ffda7, type: 3}
+      propertyPath: mainLight
+      value: 
+      objectReference: {fileID: 609295555}
+    - target: {fileID: 894045020, guid: 83528d106eccd4345940ac1ff56ffda7, type: 3}
+      propertyPath: recoverValue
+      value: 3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 894045020, guid: 83528d106eccd4345940ac1ff56ffda7, type: 3}
+      propertyPath: maxHealth
+      value: 160
       objectReference: {fileID: 0}
     - target: {fileID: 1606963195, guid: 83528d106eccd4345940ac1ff56ffda7, type: 3}
       propertyPath: m_IsActive

@@ -145,19 +145,11 @@ public class BaseGhostAI : BaseEntity
     //Function that modifies the health of the ghost, activated when it gets hit by the player with boolets
     public override void ModHealth(int modValue, BaseEntity damagerBase)
     {
-        if ((playerTransform.position - transform.position).magnitude < visibleRange)
+        hp += modValue;
+        sndSrc.PlayOneShot(damagedSnd);
+        if (chaseInDark)
         {
-            hp += modValue;
-            sndSrc.PlayOneShot(damagedSnd);
-            if (chaseInDark)
-            {
-                AlertGhost(damagerBase.transform, impactShotAlertTime, GhostStatus.CHASING);
-            }
-        }
-        else
-        {
-            sndSrc.PlayOneShot(damagedSnd);
-            AlertGhost(damagerBase.transform, missedShotAlertTime, GhostStatus.ALERTCHASING);
+            AlertGhost(damagerBase.transform, impactShotAlertTime, GhostStatus.CHASING);
         }
 
         if(hp <= 0)

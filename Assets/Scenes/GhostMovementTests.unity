@@ -1104,6 +1104,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6072442871697007110, guid: 58267cf447c1afd4b99a26ae8eeec29f,
+        type: 3}
+      propertyPath: maxHealth
+      value: 160
+      objectReference: {fileID: 0}
     - target: {fileID: 6073885188930333672, guid: 58267cf447c1afd4b99a26ae8eeec29f,
         type: 3}
       propertyPath: m_LocalPosition.x

@@ -219,10 +219,10 @@ MonoBehaviour:
   ghostVisuals: {fileID: 704467197117602015}
   ghostAnims: {fileID: 0}
   beingRevealed: 0
-  visibleRange: 2.5
+  visibleRange: 6.2
   alertRange: 4
   detectedPlayerAlertTime: 5.9
-  impactShotAlertTime: 3
+  impactShotAlertTime: 4.92
   missedShotAlertTime: 2
   chaseSpeed: 3.04
   alertSpeed: 10
