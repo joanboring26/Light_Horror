@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class doorLock : MonoBehaviour
 {
-    public doorScript drot;
+    public doorRot drot;
     // Start is called before the first frame update
     void Start()
     {
