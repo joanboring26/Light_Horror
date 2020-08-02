@@ -125,8 +125,9 @@ public class FPShooter : MonoBehaviour
                     Destroy(newBullet, 0.5f);
 
                     RaycastHit hit;
-                    if (Physics.Raycast(transform.position, shootPoint.forward, out hit))
+                    if (Physics.Raycast(transform.position, shootPoint.forward, out hit, 30f, 1 << 8, QueryTriggerInteraction.Collide))
                     {
+                        Debug.DrawLine(transform.position, hit.point, Color.yellow, 10f);
                         BaseEntity health = hit.transform.gameObject.GetComponent<BaseEntity>();
                         if (health != null)
                         {
