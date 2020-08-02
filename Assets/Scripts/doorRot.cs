@@ -7,6 +7,8 @@ public class doorRot : MonoBehaviour
     public Transform pivot;
     public bool isOpen;
     public bool inDoorPos;
+    public bool slide;
+    public bool stationary;
     public Animator anim;
 
     public bool locked;
@@ -78,7 +80,7 @@ public class doorRot : MonoBehaviour
             }
         }
 
-        if(!inDoorPos && isOpen)
+        if (!inDoorPos && isOpen)
         {
             Close();
             StopAllCoroutines();
@@ -97,7 +99,14 @@ public class doorRot : MonoBehaviour
 
     void Open()
     {
+
+        if (stationary)
+            anim.SetBool("stationary", true);
+        if (slide)
+            anim.SetBool("slide", true);
+
         anim.SetBool("open", true);
+        isOpen = true;
         isOpen = true;
     }
 
