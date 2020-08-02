@@ -76,7 +76,7 @@ public class doorRot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        /*
+        
         if (Input.GetKeyDown(KeyCode.E) && !anim.GetBool("open"))
         {
             anim.SetBool("open", true);
@@ -85,7 +85,7 @@ public class doorRot : MonoBehaviour
         {
             anim.SetBool("open", false);
         }
-        */
+        
     }
 
     public IEnumerator sndDisable()
