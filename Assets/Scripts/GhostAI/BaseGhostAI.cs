@@ -13,13 +13,16 @@ public enum GhostStatus
 
 public class BaseGhostAI : BaseEntity
 {
+    public bool chaseInDark;
+
     public AudioSource chaseSrc;
     public AudioSource sndSrc;
-    public AudioClip deathSnd;
-    public AudioClip alertSnd;
-
+    public AudioClip[] deathSnd;
+    public AudioClip[] alertSnd;
+    public AudioClip damagedSnd;
 
     public GameObject ghostVisuals;
+    public Animator ghostAnims;
     public bool beingRevealed = false;
 
     public float visibleRange;
@@ -46,7 +49,7 @@ public class BaseGhostAI : BaseEntity
 
     public void Update()
     {
-        if (currentStatus != GhostStatus.STUNNED)
+        if (currentStatus != GhostStatus.STUNNED && chaseInDark)
         {
             //This loop mainly controls whether the ghost should be visible or not and if the player is close enough to alert the ghost
             if (playerTransform != null && (playerTransform.position - transform.position).magnitude < visibleRange && agent.enabled)
@@ -60,7 +63,7 @@ public class BaseGhostAI : BaseEntity
                     if (currentStatus != GhostStatus.CHASING)
                     {
                         AlertGhost(playerTransform, detectedPlayerAlertTime, GhostStatus.CHASING);
-                        sndSrc.PlayOneShot(alertSnd);
+                        sndSrc.PlayOneShot(alertSnd[Random.Range(0, alertSnd.Length)]);
                     }
                     else
                     {
@@ -107,7 +110,7 @@ public class BaseGhostAI : BaseEntity
                 if(currentStatus != GhostStatus.CHASING) 
                 { 
                     currentStatus = gStatus;
-                    sndSrc.PlayOneShot(alertSnd);
+                    sndSrc.PlayOneShot(alertSnd[Random.Range(0, alertSnd.Length)]);
                     agent.speed = alertSpeed;
                 }
                 else
@@ -130,6 +133,7 @@ public class BaseGhostAI : BaseEntity
                 break;
         }
 
+        ghostAnims.SetBool("Running", true);
         agent.SetDestination(alertPosition.position);
         AlertGhostCoroutine = StartCoroutine(AlertGhostMove(alertTime));
     }
@@ -140,10 +144,15 @@ public class BaseGhostAI : BaseEntity
         if ((playerTransform.position - transform.position).magnitude < visibleRange)
         {
             hp += modValue;
-            AlertGhost(damagerBase.transform, impactShotAlertTime, GhostStatus.CHASING);
+            sndSrc.PlayOneShot(damagedSnd);
+            if (chaseInDark)
+            {
+                AlertGhost(damagerBase.transform, impactShotAlertTime, GhostStatus.CHASING);
+            }
         }
         else
         {
+            sndSrc.PlayOneShot(damagedSnd);
             AlertGhost(damagerBase.transform, missedShotAlertTime, GhostStatus.ALERTCHASING);
         }
 
@@ -156,7 +165,7 @@ public class BaseGhostAI : BaseEntity
     //Function that activates when ghost dies, we'll put in a bunch of sfx here
     public void Die()
     {
-        sndSrc.PlayOneShot(deathSnd);
+        sndSrc.PlayOneShot(deathSnd[Random.Range(0,deathSnd.Length)]);
 
         agent.enabled = false;
         agent.gameObject.GetComponent<AudioSource>().Stop();
@@ -170,6 +179,7 @@ public class BaseGhostAI : BaseEntity
     public IEnumerator AlertGhostMove(float gAlertTime)
     {
         yield return new WaitForSeconds(gAlertTime);
+        ghostAnims.SetBool("Running", false);
         currentStatus = GhostStatus.IDLE;
         agent.SetDestination(agent.transform.position);
         ghostVisuals.SetActive(false);

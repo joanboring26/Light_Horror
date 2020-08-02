@@ -20,6 +20,8 @@ public class FPShooter : MonoBehaviour
     public GameObject bullet;
     public int gunDamage;
 
+    public FPMover playerMover;
+    public FPLooker playerLooker;
     public GameObject HUDCylinder;
     public GameObject[] HUDBullets;
     public bool isOpenCylinder = false;
@@ -28,15 +30,21 @@ public class FPShooter : MonoBehaviour
     public int bulletReserve = 0;
     public Text bulletReserveText;
 
+    public float gunRecoil;
     public float bulletSpeed;
     public float alertRadius;
     public float muzzleTime;
     public float fireRate;
     public float loadBulletDelay;
 
+    Vector3 initPos;
+    float defaultMove;
+
     // Start is called before the first frame update
     void Start()
     {
+        defaultMove = playerMover.speed;
+        initPos = shootPoint.localPosition;
         gunAnim = GetComponentInChildren<Animator>();
     }
 
@@ -52,6 +60,19 @@ public class FPShooter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(Input.GetKey(KeyCode.Mouse1))
+        {
+            shootPoint.transform.localPosition = new Vector3(0, -0.07f, initPos.z);
+            //Reduce the movement speed when the player aims
+            playerMover.speed = 2.5f;
+        }
+        else
+        {
+            shootPoint.transform.localPosition = initPos;
+            //Restore the movement speed when the player stops aiming
+            playerMover.speed = defaultMove;
+        }
+
         if(Input.GetKeyDown(KeyCode.R))
         {
             if(isOpenCylinder)
@@ -88,6 +109,8 @@ public class FPShooter : MonoBehaviour
                 {
                     shotLight.enabled = true;
                     StartCoroutine(flashDelay());
+                    //Make the camera recoil
+                    playerLooker.rotVal = gunRecoil;
                     //HIde the bullet that was shot in the hud
                     fireNextTime = Time.time + fireRate;
                     HUDBullets[bulletsInMag - 1].SetActive(false);

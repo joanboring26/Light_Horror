@@ -12,6 +12,7 @@ public class BulletPickup : MonoBehaviour
         {
             touched = true;
             FindObjectOfType<FPShooter>().AddAmmo(1);
+            gameObject.GetComponent<AudioSource>().enabled = true;
             gameObject.GetComponent<AudioSource>().Play();
             visuals.SetActive(false);
             Destroy(gameObject, 2f);
