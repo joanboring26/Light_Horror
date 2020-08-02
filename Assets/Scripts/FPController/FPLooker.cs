@@ -7,6 +7,7 @@ public class FPLooker : MonoBehaviour
     public float smoothing = 2;
     public Vector2 MouseLook;
     public Vector2 MouseDelta;
+    public float rotVal;
 
     void Reset()
     {
@@ -23,9 +24,10 @@ public class FPLooker : MonoBehaviour
         Vector2 smoothMouseDelta = Vector2.Scale(new Vector2(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw("Mouse Y")), Vector2.one * sensitivity * smoothing);
         MouseDelta = Vector2.Lerp(MouseDelta, smoothMouseDelta, 1 / smoothing);
         MouseLook += MouseDelta;
-        MouseLook.y = Mathf.Clamp(MouseLook.y, -90, 90);
+        MouseLook.y = Mathf.Clamp(MouseLook.y + rotVal, -90, 90);
 
         transform.localRotation = Quaternion.AngleAxis(-MouseLook.y, Vector3.right);
         playerTran.localRotation = Quaternion.AngleAxis(MouseLook.x, Vector3.up);
+        rotVal = 0;
     }
 }
