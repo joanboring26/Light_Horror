@@ -21,6 +21,7 @@ public class BaseGhostAI : BaseEntity
     public AudioClip[] alertSnd;
     public AudioClip damagedSnd;
 
+    public GameObject ghostAttack;
     public GameObject ghostVisuals;
     public Animator ghostAnims;
     public bool beingRevealed = false;
@@ -167,7 +168,8 @@ public class BaseGhostAI : BaseEntity
         agent.gameObject.GetComponent<AudioSource>().Stop();
         chaseSrc.Stop();
         ghostVisuals.SetActive(false);
-
+        playerTransform.GetComponent<FPHealth>().SendMessage("UnTouch");
+        Destroy(ghostAttack);
         //This should be executed last
         Destroy(agent.gameObject,2.8f);
     }

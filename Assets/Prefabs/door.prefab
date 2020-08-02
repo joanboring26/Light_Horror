@@ -134,6 +134,14 @@ MonoBehaviour:
   isOpen: 0
   inDoorPos: 0
   anim: {fileID: 1699537788}
+  locked: 0
+  creaky: 0
+  sndSrc: {fileID: 9185362164138495969}
+  lockedSnd: {fileID: 8300000, guid: b71030e79e4b281439e06168c43ae534, type: 3}
+  openSnd: {fileID: 8300000, guid: 21d3a4be4c7d1694fb60b4d16bb6fcd3, type: 3}
+  c_openSnd: {fileID: 8300000, guid: 6e5ce5c89b166604cb05935ad1e5c15c, type: 3}
+  closeSnd: {fileID: 8300000, guid: 6069ca94f16618944aa8f9cee0b6d4cf, type: 3}
+  c_closeSnd: {fileID: 8300000, guid: 87a5168443e26e840acbdf4f65a4d6fa, type: 3}
 --- !u!65 &1699537787
 BoxCollider:
   m_ObjectHideFlags: 0

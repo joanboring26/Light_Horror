@@ -9,18 +9,11 @@ public class GhostAttack : MonoBehaviour
     float nextTime = 0;
     private void OnTriggerEnter(Collider collision)
     {
-        /* if (Time.time > nextTime)
-         {
-             nextTime = Time.time + attackDelay;
-             BaseEntity dam = new BaseEntity();
-             collision.GetComponent<BaseEntity>().ModHealth(damage, dam);
-         } */
         collision.SendMessage("Touch");
     }
 
     private void OnTriggerExit(Collider other)
     {
         other.SendMessage("UnTouch");
-
     }
 }
