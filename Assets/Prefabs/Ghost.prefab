@@ -219,7 +219,6 @@ MonoBehaviour:
   ghostVisuals: {fileID: 704467197117602015}
   ghostAnims: {fileID: 0}
   beingRevealed: 0
-<<<<<<< Updated upstream
   visibleRange: 6.2
   alertRange: 4
   detectedPlayerAlertTime: 5.9
@@ -227,15 +226,6 @@ MonoBehaviour:
   missedShotAlertTime: 2
   chaseSpeed: 3.04
   alertSpeed: 10
-=======
-  visibleRange: 15
-  alertRange: 4
-  detectedPlayerAlertTime: 5.9
-  impactShotAlertTime: 3
-  missedShotAlertTime: 3
-  chaseSpeed: 1
-  alertSpeed: 16.84
->>>>>>> Stashed changes
   currentStatus: 2
   agent: {fileID: 704467197165997185}
 --- !u!82 &704467196433461204

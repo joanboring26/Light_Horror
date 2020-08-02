@@ -214,7 +214,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3306663801937491713}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.192, y: 1.257, z: 0.512}
+  m_LocalPosition: {x: -0.21, y: 1.69, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3307510918725173202}
@@ -297,7 +297,6 @@ MonoBehaviour:
   smoothing: 2
   MouseLook: {x: 0, y: 0}
   MouseDelta: {x: 0, y: 0}
-  rotVal: 0
 --- !u!114 &3307510920184420757
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -320,8 +319,6 @@ MonoBehaviour:
   shootPoint: {fileID: 3307510918725173202}
   bullet: {fileID: 3992975901221404532, guid: d275350c720b01745b679de9c671a03a, type: 3}
   gunDamage: -50
-  playerMover: {fileID: 0}
-  playerLooker: {fileID: 0}
   HUDCylinder: {fileID: 3307510918931767137}
   HUDBullets:
   - {fileID: 3307510919245908049}
@@ -335,7 +332,6 @@ MonoBehaviour:
   maxBullets: 6
   bulletReserve: 0
   bulletReserveText: {fileID: 3307510918339885560}
-  gunRecoil: 0
   bulletSpeed: 400
   alertRadius: 15
   muzzleTime: 0.2
@@ -687,14 +683,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3307510918725173213}
-  m_LocalRotation: {x: -0, y: 0.04633181, z: -0, w: 0.99892616}
-  m_LocalPosition: {x: 0.035, y: 0.11500001, z: 0.283}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.418, y: -0.286, z: 0.65}
   m_LocalScale: {x: 0.13, y: 0.0875725, z: 0.48726562}
   m_Children:
   - {fileID: 4809071696834160623}
   m_Father: {fileID: 3308367871047736145}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 5.3110003, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &3307510918725173200
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -849,9 +845,9 @@ Light:
   serializedVersion: 10
   m_Type: 2
   m_Shape: 0
-  m_Color: {r: 1, g: 0.7625067, b: 0.5801887, a: 1}
-  m_Intensity: 1.5
-  m_Range: 50
+  m_Color: {r: 0.9150943, g: 0.5274136, b: 0.22877358, a: 1}
+  m_Intensity: 2
+  m_Range: 98.09
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -1532,12 +1528,12 @@ PrefabInstance:
     - target: {fileID: 8024256281788843466, guid: d8a94d71809e26640b9536579d7bf1ab,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.77
+      value: -0.43
       objectReference: {fileID: 0}
     - target: {fileID: 8024256281788843466, guid: d8a94d71809e26640b9536579d7bf1ab,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.95
+      value: 0.38
       objectReference: {fileID: 0}
     - target: {fileID: 8024256281788843466, guid: d8a94d71809e26640b9536579d7bf1ab,
         type: 3}
