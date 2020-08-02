@@ -189,7 +189,7 @@ Transform:
   m_Children:
   - {fileID: 704467197117602014}
   m_Father: {fileID: 704467197165997184}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: -270, z: 14.713}
 --- !u!114 &704467196433461206
 MonoBehaviour:
@@ -216,10 +216,10 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 020967a678efdc04f81e07dd264ea19b, type: 3}
   - {fileID: 8300000, guid: dcb977c9022cb094c87cf183899bba12, type: 3}
   damagedSnd: {fileID: 8300000, guid: 7a057dee0865c0e459937eca5bd619e3, type: 3}
+  ghostAttack: {fileID: 7286000917944056054}
   ghostVisuals: {fileID: 704467197117602015}
   ghostAnims: {fileID: 0}
   beingRevealed: 0
-<<<<<<< Updated upstream
   visibleRange: 6.2
   alertRange: 4
   detectedPlayerAlertTime: 5.9
@@ -227,15 +227,6 @@ MonoBehaviour:
   missedShotAlertTime: 2
   chaseSpeed: 3.04
   alertSpeed: 10
-=======
-  visibleRange: 15
-  alertRange: 4
-  detectedPlayerAlertTime: 5.9
-  impactShotAlertTime: 3
-  missedShotAlertTime: 3
-  chaseSpeed: 1
-  alertSpeed: 16.84
->>>>>>> Stashed changes
   currentStatus: 2
   agent: {fileID: 704467197165997185}
 --- !u!82 &704467196433461204
@@ -409,8 +400,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 704467196161303598}
-  - {fileID: 704467196433461205}
   - {fileID: 1958161737541461213}
+  - {fileID: 704467196433461205}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 270, z: 0}
@@ -585,12 +576,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7286000917944056054}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0, y: 0.244, z: 0.271}
-  m_LocalScale: {x: 0.42075, y: 1.70754, z: 0.93735}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.24399984, z: 0.27099994}
+  m_LocalScale: {x: 0.42075002, y: 1.7075405, z: 0.93735}
   m_Children: []
   m_Father: {fileID: 704467197165997184}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &2532605757619029518
 BoxCollider:
@@ -699,11 +690,51 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 0c6c4c8ec3522584f8df1cfb8eebc310,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 13.1
+      value: 13.100002
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 0c6c4c8ec3522584f8df1cfb8eebc310,
         type: 3}
       propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: 0c6c4c8ec3522584f8df1cfb8eebc310,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: 0c6c4c8ec3522584f8df1cfb8eebc310,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: 0c6c4c8ec3522584f8df1cfb8eebc310,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.00000004470347
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: 0c6c4c8ec3522584f8df1cfb8eebc310,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: 0c6c4c8ec3522584f8df1cfb8eebc310,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: 0c6c4c8ec3522584f8df1cfb8eebc310,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: 0c6c4c8ec3522584f8df1cfb8eebc310,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: 0c6c4c8ec3522584f8df1cfb8eebc310,
+        type: 3}
+      propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -3075763420406186847, guid: 0c6c4c8ec3522584f8df1cfb8eebc310,
