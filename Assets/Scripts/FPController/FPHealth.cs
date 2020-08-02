@@ -5,11 +5,13 @@ using UnityEngine;
 public class FPHealth : MonoBehaviour
 {
     public int maxHealth;
-    public int currHealth;
+    public float currHealth;
     public bool touching;
     public float nextTime = 0;
     public float healthDelay;
     public float damageDelay;
+
+    public Light mainLight;
 
   
 
@@ -43,6 +45,8 @@ public class FPHealth : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        mainLight.intensity = currHealth / 1000;
     }
 
     void LoseHealth()

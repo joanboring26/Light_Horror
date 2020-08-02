@@ -44,6 +44,7 @@ public class BaseGhostAI : BaseEntity
 
     public void Start()
     {
+        SetGhostInvisible();
         playerTransform = FindObjectOfType<FPMover>().transform;
         ghostAnims = GetComponentInParent<Animator>();
     }
@@ -80,6 +81,8 @@ public class BaseGhostAI : BaseEntity
             {
                 SetGhostInvisible();
             }
+
+         
 
             if (currentStatus == GhostStatus.CHASING && agent.enabled)
             {

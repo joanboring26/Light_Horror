@@ -32,7 +32,8 @@ public class FPShooter : MonoBehaviour
 
     public float gunRecoil;
     public float bulletSpeed;
-    public float alertRadius;
+    public float alertRange;
+    public float visibleRadius;
     public float muzzleTime;
     public float fireRate;
     public float loadBulletDelay;
@@ -133,7 +134,7 @@ public class FPShooter : MonoBehaviour
                         }
                     }
 
-                    Collider[] ghosts = Physics.OverlapSphere(transform.position, alertRadius, 1 << 8);
+                    Collider[] ghosts = Physics.OverlapSphere(transform.position, visibleRadius, 1 << 8);
                     for (int i = 0; i < ghosts.Length; i++)
                     {
                         BaseGhostAI ghostBase = ghosts[i].GetComponent<BaseGhostAI>();
@@ -141,7 +142,10 @@ public class FPShooter : MonoBehaviour
                         {
                             ghostBase.SetGhostVisible();
                             ghostBase.beingRevealed = true;
-                            ghostBase.AlertGhost(transform, muzzleTime, GhostStatus.ALERTCHASING);
+                            if ((ghostBase.transform.position - transform.position).magnitude < alertRange)
+                            {
+                                ghostBase.AlertGhost(transform, muzzleTime, GhostStatus.ALERTCHASING);
+                            }
                         }
                     }
                 }

@@ -3,6 +3,8 @@
 public class FPMover : MonoBehaviour
 {
     public float speed = 5;
+    public float backSpeed = 1;
+
     public float footStepDelay;
     public AudioSource footStepSource;
     public AudioClip[] stoneSteps;
@@ -17,7 +19,14 @@ public class FPMover : MonoBehaviour
     {
         if (Input.GetAxis("Vertical") != 0 || Input.GetAxis("Horizontal") != 0)
         {
-            velocity.y = Input.GetAxis("Vertical") * speed * Time.deltaTime;
+            if (Input.GetAxis("Vertical") < 0)
+            {
+                velocity.y = Input.GetAxis("Vertical") * backSpeed * Time.deltaTime;
+            }
+            else
+            {
+                velocity.y = Input.GetAxis("Vertical") * speed * Time.deltaTime;
+            }
             velocity.x = Input.GetAxis("Horizontal") * speed * Time.deltaTime;
             transform.Translate(velocity.x, 0, velocity.y);
             if(Time.time > nextTime)
