@@ -148,25 +148,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!95 &1898195668
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7210318247085365464}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 61e9a9c5f291d6b4e981337f4680a74a, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1108334795
 GameObject:
   m_ObjectHideFlags: 0
@@ -1183,14 +1164,15 @@ MonoBehaviour:
   isOpenCylinder: 0
   bulletsInMag: 3
   maxBullets: 6
-  bulletReserve: 0
+  bulletReserve: 4
   bulletReserveText: {fileID: 2016471394}
-  gunRecoil: 15.28
+  gunRecoil: 10
   bulletSpeed: 400
-  alertRadius: 15
+  alertRange: 10
+  visibleRadius: 25
   muzzleTime: 0.45
-  fireRate: 0.71
-  loadBulletDelay: 0.6
+  fireRate: 0.4
+  loadBulletDelay: 0.4
 --- !u!1 &1502275738552958
 GameObject:
   m_ObjectHideFlags: 0
@@ -1413,6 +1395,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 4.68
+  backSpeed: 1
   footStepDelay: 0.58
   footStepSource: {fileID: 894045019}
   stoneSteps:
@@ -1530,12 +1513,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e76329cbb52094e49a63e872a7379c35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
+  maxHealth: 150
   currHealth: 0
   touching: 0
   nextTime: 0
   healthDelay: 0.5
   damageDelay: 0.1
+  mainLight: {fileID: 0}
+--- !u!95 &1898195668
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7210318247085365464}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 61e9a9c5f291d6b4e981337f4680a74a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &520259496
 PrefabInstance:
   m_ObjectHideFlags: 0
