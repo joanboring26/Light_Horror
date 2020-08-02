@@ -45,6 +45,7 @@ public class BaseGhostAI : BaseEntity
     public void Start()
     {
         playerTransform = FindObjectOfType<FPMover>().transform;
+        ghostAnims = GetComponentInParent<Animator>();
     }
 
     public void Update()
