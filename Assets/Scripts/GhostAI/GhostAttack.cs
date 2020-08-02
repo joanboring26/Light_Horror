@@ -7,13 +7,20 @@ public class GhostAttack : MonoBehaviour
     public int damage;
     public float attackDelay;
     float nextTime = 0;
-    private void OnTriggerStay2D(Collider2D collision)
+    private void OnTriggerEnter(Collider collision)
     {
-        if (Time.time > nextTime)
-        {
-            nextTime = Time.time + attackDelay;
-            BaseEntity dam = new BaseEntity();
-            collision.GetComponent<BaseEntity>().ModHealth(damage, dam);
-        }
+        /* if (Time.time > nextTime)
+         {
+             nextTime = Time.time + attackDelay;
+             BaseEntity dam = new BaseEntity();
+             collision.GetComponent<BaseEntity>().ModHealth(damage, dam);
+         } */
+        collision.SendMessage("Touch");
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        other.SendMessage("UnTouch");
+
     }
 }

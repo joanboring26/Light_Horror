@@ -41,11 +41,19 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
+<<<<<<< Updated upstream
       name: Armature|idlea
       takeName: Armature|idlea
       internalID: 0
       firstFrame: 0
       lastFrame: 4
+=======
+      name: Armature|run (1)
+      takeName: Armature|run
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 9
+>>>>>>> Stashed changes
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
