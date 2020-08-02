@@ -25,26 +25,30 @@ public class DoorScript : MonoBehaviour
 
     public void OpenDoor()
     {
+        closed = false;
         transform.position = openPosition.position;
         transform.rotation = openPosition.rotation;
         StopAllCoroutines();
         StartCoroutine(sndDisable());
+        sndSrc.enabled = true;
         if (creaky)
         {
-            sndSrc.PlayOneShot(c_closeSnd);
+            sndSrc.PlayOneShot(c_openSnd);
         }
         else
         {
-            sndSrc.PlayOneShot(closeSnd);
+            sndSrc.PlayOneShot(openSnd);
         }
     }
 
     public void CloseDoor()
     {
+        closed = true;
         transform.position = closedPosition;
         transform.rotation = closedRotation;
         StopAllCoroutines();
         StartCoroutine(sndDisable());
+        sndSrc.enabled = true;
         if (creaky)
         {
             sndSrc.PlayOneShot(c_closeSnd);

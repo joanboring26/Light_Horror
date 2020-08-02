@@ -4,9 +4,17 @@ using UnityEngine;
 
 public class doorRot : MonoBehaviour
 {
+    public Animator anim;
     public Transform pivot;
     public bool open;
-    public Animator anim;
+    public bool locked;
+    public bool creaky;
+    public AudioSource sndSrc;
+    public AudioClip lockedSnd;
+    public AudioClip openSnd;
+    public AudioClip c_openSnd;
+    public AudioClip closeSnd;
+    public AudioClip c_closeSnd;
 
     // Start is called before the first frame update
     void Start()
@@ -14,30 +22,77 @@ public class doorRot : MonoBehaviour
         anim = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void OpenDoor()
     {
-        /*if(Input.GetKey(KeyCode.E) && !open)
-    transform.RotateAround(pivot.position, Vector3.up, -30 * Time.deltaTime);
-*/
-        if (Input.GetKeyDown(KeyCode.E) && anim.GetBool("open") == false)
+        StopAllCoroutines();
+        StartCoroutine(sndDisable());
+        if (creaky)
         {
-            anim.SetBool("open", true);
-
+            sndSrc.PlayOneShot(c_closeSnd);
         }
-        else if ((Input.GetKeyDown(KeyCode.E) && anim.GetBool("open") == true))
+        else
         {
-            anim.SetBool("open", false);
+            sndSrc.PlayOneShot(closeSnd);
+        }
+        anim.SetBool("open", true);
+    }
+
+    public void CloseDoor()
+    {
+        StopAllCoroutines();
+        StartCoroutine(sndDisable());
+        if (creaky)
+        {
+            sndSrc.PlayOneShot(c_closeSnd);
+        }
+        else
+        {
+            sndSrc.PlayOneShot(closeSnd);
+        }
+        anim.SetBool("open", false);
+    }
+
+    public void InteractDoor()
+    {
+        if (locked)
+        {
+            sndSrc.PlayOneShot(lockedSnd);
+            StopAllCoroutines();
+            StartCoroutine(sndDisable());
+        }
+        else
+        {
+            if (anim.GetBool("open"))
+            {
+                OpenDoor();
+            }
+            else
+            {
+                CloseDoor();
+            }
         }
     }
 
-    /*private void OnTriggerEnter(Collider other)
+    // Update is called once per frame
+    void Update()
     {
-        if(other.gameObject.CompareTag("stop"))
+        /*
+        if (Input.GetKeyDown(KeyCode.E) && !anim.GetBool("open"))
         {
-            open = true;
+            anim.SetBool("open", true);
         }
-    }*/
+        else if ((Input.GetKeyDown(KeyCode.E) && anim.GetBool("open")))
+        {
+            anim.SetBool("open", false);
+        }
+        */
+    }
+
+    public IEnumerator sndDisable()
+    {
+        yield return new WaitForSeconds(3.5f);
+        sndSrc.enabled = false;
+    }
 }
 
 
