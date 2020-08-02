@@ -47,7 +47,7 @@ public class FPHealth : MonoBehaviour
             Destroy(gameObject);
         }
 
-        mainLight.intensity = currHealth / 1000;
+        //mainLight.intensity = currHealth / 1000;
     }
 
     void LoseHealth()

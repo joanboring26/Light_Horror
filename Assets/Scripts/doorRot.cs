@@ -9,15 +9,6 @@ public class doorRot : MonoBehaviour
     public bool inDoorPos;
     public Animator anim;
 
-    public bool locked;
-    public bool creaky;
-    public AudioSource sndSrc;
-    public AudioClip lockedSnd;
-    public AudioClip openSnd;
-    public AudioClip c_openSnd;
-    public AudioClip closeSnd;
-    public AudioClip c_closeSnd;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -27,71 +18,22 @@ public class doorRot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        /*if(Input.GetKey(KeyCode.E) && !open)
+    transform.RotateAround(pivot.position, Vector3.up, -30 * Time.deltaTime);
+*/
         if (Input.GetKeyDown(KeyCode.E) && anim.GetBool("open") == false && inDoorPos)
         {
-            if (!locked)
-            {
-                Open();
-                StopAllCoroutines();
-                StartCoroutine(sndDisable());
-                sndSrc.enabled = true;
-                if (creaky)
-                {
-                    sndSrc.PlayOneShot(c_openSnd);
-                }
-                else
-                {
-                    sndSrc.PlayOneShot(openSnd);
-                }
-            }
-            else
-            {
-                StopAllCoroutines();
-                StartCoroutine(sndDisable());
-                sndSrc.enabled = true;
-                sndSrc.PlayOneShot(lockedSnd);
-            }
+            Open();
         }
         else if ((Input.GetKeyDown(KeyCode.E) && anim.GetBool("open") == true && inDoorPos))
         {
-            if (!locked)
-            {
-                Close();
-                StopAllCoroutines();
-                StartCoroutine(sndDisable());
-                sndSrc.enabled = true;
-                if (creaky)
-                {
-                    sndSrc.PlayOneShot(c_closeSnd);
-                }
-                else
-                {
-                    sndSrc.PlayOneShot(closeSnd);
-                }
-            }
-            else
-            {
-                StopAllCoroutines();
-                StartCoroutine(sndDisable());
-                sndSrc.enabled = true;
-                sndSrc.PlayOneShot(lockedSnd);
-            }
+            Close();
         }
 
         if(!inDoorPos && isOpen)
         {
             Close();
-            StopAllCoroutines();
-            StartCoroutine(sndDisable());
-            sndSrc.enabled = true;
-            if (creaky)
-            {
-                sndSrc.PlayOneShot(c_closeSnd);
-            }
-            else
-            {
-                sndSrc.PlayOneShot(closeSnd);
-            }
+
         }
     }
 
@@ -108,11 +50,13 @@ public class doorRot : MonoBehaviour
 
     }
 
-    public IEnumerator sndDisable()
+    /*private void OnTriggerEnter(Collider other)
     {
-        yield return new WaitForSeconds(3.5f);
-        sndSrc.enabled = false;
-    }
+        if(other.gameObject.CompareTag("stop"))
+        {
+            open = true;
+        }
+    }*/
 }
 
 
