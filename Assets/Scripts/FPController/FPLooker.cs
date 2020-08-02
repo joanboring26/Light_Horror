@@ -29,5 +29,21 @@ public class FPLooker : MonoBehaviour
         transform.localRotation = Quaternion.AngleAxis(-MouseLook.y, Vector3.right);
         playerTran.localRotation = Quaternion.AngleAxis(MouseLook.x, Vector3.up);
         rotVal = 0;
+
+        /*
+        if(Input.GetKeyDown(KeyCode.E))
+        {
+            //Ray rc = new Ray();
+            RaycastHit rc =  new RaycastHit();
+            if(Physics.Raycast(transform.position, transform.forward,out rc, 2.2f, 1 << 0, QueryTriggerInteraction.Collide))
+            {
+                DoorScript dc = rc.collider.GetComponent<DoorScript>();
+                if(dc != null)
+                {
+                    dc.InteractDoor();
+                }
+            }
+        }
+        */
     }
 }
